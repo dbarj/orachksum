@@ -1,0 +1,14 @@
+-- Add or remove new Sections in this file. No need to update anywhere else.
+-- Use "," as field separator
+-- Format: Section ID [1a - 9z], File Sufix Name, Section Description, Skip Variables (If last field is empty or its variables return NULL, sql WILL be executed)
+--
+1a,sourcechecker.sql,'Objects Intergrity Checker',&&skip_ver_le_11_1.
+1b,permschecker.sql,'Permissions Checker',&&skip_ver_le_11_1.
+1c,otherschecker.sql,'RK Checker',&&skip_ver_le_11_1.
+1d,filechecker.sql,'File Checker (Linux only)',&&skip_ver_le_11_1.
+2a,schedulerchecker.sql,'Scheduler Checker',&&skip_ver_le_11_1.
+2b,auditchecker.sql,'Audit Checker',&&skip_ver_le_11_1.
+3a,misc.sql,'Miscellaneous'
+--
+-- Note: You can optionally have sections 0a_pre.sql and 0b_post.sql (not defined on this csv).
+-- They are not mandatory and they instruct moat to run only once a initial sql before all of them (0a) or after all of them (0b).
