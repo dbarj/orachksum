@@ -13,8 +13,8 @@ DEF main_table = '&&orachk_table_name.'
 @@&&fc_def_output_file. orachk_tot_rows_orig '&&orachk_file_pref._csv_numrows_orig.sql'
 
 -- If orachk_comp_column is defined, will generate the compare file and use it on orachksum shell step. Otherwise, ignore.
-DEF orachk_db_comp   = '&&orachk_db_file..comp'
-DEF orachk_orig_comp = '&&orachk_orig_file..comp'
+@@&&fc_def_output_file. orachk_db_comp       '&&orachk_file_pref._db_out.comp.csv'
+@@&&fc_def_output_file. orachk_orig_comp     '&&orachk_file_pref._orig.comp.csv'
 
 -- @@&&fc_set_value_var_nvl2. orachk_db_comp   '&&orachk_comp_column.' '&&orachk_db_file..comp'   '&&orachk_db_file.'
 -- @@&&fc_set_value_var_nvl2. orachk_orig_comp '&&orachk_comp_column.' '&&orachk_orig_file..comp' '&&orachk_orig_file.'

@@ -163,10 +163,12 @@ DECLARE
       ]' into V_BP_RUR, V_BP_RUR_DATE;
     ELSIF v_ora_ver_major > 12 THEN
       execute immediate q'[
-      select ID, action_time
+      select substr(description,a,instr(description,' ',a)-a) ID, action_time
       from (
-        select substr(TARGET_VERSION,instr(TARGET_VERSION,'.',1,2)+1,instr(TARGET_VERSION,'.',1,3)-instr(TARGET_VERSION,'.',1,2)-1) ID, action_time, rank() over (order by action_time desc) ordem
-        from sys.registry$sqlpatch
+        select instr(description,TARGET_VERSION_4D)+length(TARGET_VERSION_4D)+1 a, description,
+               action_time,
+               rank() over (order by action_time desc) ordem
+        from (select t1.*, substr(t1.TARGET_VERSION,1,instr(t1.TARGET_VERSION,'.',1,4)-1) TARGET_VERSION_4D  from sys.registry$sqlpatch t1)
         where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RUR'
       ) where ordem=1
       ]' into V_BP_RUR,V_BP_RUR_DATE using v_ora_ver_major;

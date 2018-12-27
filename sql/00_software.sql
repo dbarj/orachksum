@@ -5,25 +5,25 @@ DEF moat369_sw_logo_file  = 'orachksum.jpg'
 DEF moat369_sw_icon_file  = 'orachksum.ico'
 DEF moat369_sw_cert_file  = ''
 DEF moat369_sw_title_desc = 'Oracle Database Integrity Checker'
-DEF moat369_sw_url        = 'http://www.dbarj.com.br/'
+DEF moat369_sw_url        = 'https://github.com/dbarj/orachksum'
 DEF moat369_sw_rpt_cols   = '3'
 DEF moat369_sw_misc_fdr   = 'js'
 
-DEF moat369_sw_logo_title_1 = "Oracle Database Integrity Checker (orachksum) is a tool that detects changes on Oracle database internal objects."
-DEF moat369_sw_logo_title_2 = "It contains a signature dictionary file that includes expected hash values for many Oracle objects."
-DEF moat369_sw_logo_title_3 = "When executed it will than compare the actual value with the expected one and report if any differences are found."
-DEF moat369_sw_logo_title_4 = "The ORACHKSUM signature dictionary file includes changes performed by PSU, BP, RU, RUR or OJVM PSU for the above releases."
-DEF moat369_sw_logo_title_5 = "Only if you have one-off patches applied that you could have some false-positives during scans."
+DEF moat369_sw_logo_title_1 = "Oracle Database Integrity Checker (ORACHKSUM) is a free open-sourced github tool that verifies signature for files"
+DEF moat369_sw_logo_title_2 = "and internal objects of Oracle Databases,  comparing what you have with what oracle provides in the original database installation."
+DEF moat369_sw_logo_title_3 = ""
+DEF moat369_sw_logo_title_4 = "The tool is a basically a collection of SQLs and CSVs files, that will create and compare the sha1sum of your objects"
+DEF moat369_sw_logo_title_5 = "with the original ones and output the differences in a HTML report."
 DEF moat369_sw_logo_title_6 = ""
-DEF moat369_sw_logo_title_7 = ""
-DEF moat369_sw_logo_title_8 = ""
+DEF moat369_sw_logo_title_7 = "The ORACHKSUM signature dictionary files include changes performed by any PSU, BP, RU, RUR or OJVM PSU for the above releases."
+DEF moat369_sw_logo_title_8 = "If you have one-off patches applied on your database you may face some false-positives results during scans."
 
-DEF moat369_sw_vYYNN = 'v1810'
-DEF moat369_sw_vrsn  = '&&moat369_sw_vYYNN. (2018-10-01)'
+DEF moat369_sw_vYYNN = 'v1811'
+DEF moat369_sw_vrsn  = '&&moat369_sw_vYYNN. (2018-11-26)'
 
 DEF moat369_sw_copyright = 'orachksum (c) 2018, All rights reserved.'
 DEF moat369_sw_author    = 'Rodrigo Jorge'
-DEF moat369_sw_email     = ''
+DEF moat369_sw_email     = 'rodrigoaraujorge [] gmail.com'
 
 DEF moat369_sw_enc_sql = 'N'
 DEF moat369_sw_dec_cmd = ''
