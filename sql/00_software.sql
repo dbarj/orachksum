@@ -18,14 +18,13 @@ DEF moat369_sw_logo_title_6 = ""
 DEF moat369_sw_logo_title_7 = "The ORACHKSUM signature dictionary files include changes performed by any PSU, BP, RU, RUR or OJVM PSU for the above releases."
 DEF moat369_sw_logo_title_8 = "If you have one-off patches applied on your database you may face some false-positives results during scans."
 
-DEF moat369_sw_vYYNN = 'v1811'
-DEF moat369_sw_vrsn  = '&&moat369_sw_vYYNN. (2018-11-26)'
+DEF moat369_sw_vYYNN = 'v1901'
+DEF moat369_sw_vrsn  = '&&moat369_sw_vYYNN. (2019-02-01)'
 
-DEF moat369_sw_copyright = 'orachksum (c) 2018, All rights reserved.'
+DEF moat369_sw_copyright = 'orachksum (c) 2019, All rights reserved.'
 DEF moat369_sw_author    = 'Rodrigo Jorge'
 DEF moat369_sw_email     = 'rodrigoaraujorge [] gmail.com'
 
 DEF moat369_sw_enc_sql = 'N'
-DEF moat369_sw_dec_cmd = ''
 
 /*************************** software configuration (do not modify ) ****************************/

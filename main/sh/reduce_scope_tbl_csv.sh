@@ -104,7 +104,10 @@ printpercentage ()
  curline=$(( $curline + 1 ))
 }
 
-totline=$(cat "${v_source}" | wc -l)
+${GREPCMD} -F ",${v_patch_series},"  "${v_source}" >> "${v_source}.2" || touch "${v_source}.2"
+${GREPCMD} -F ",BOTH,"               "${v_source}" >> "${v_source}.2" || touch "${v_source}.2"
+
+totline=$(cat "${v_source}.2" | wc -l)
 curline=1
 perc_b4=-1
 
@@ -122,7 +125,8 @@ do
  fi
  ## Print Percentage
  printpercentage
-done < "${v_source}"
+done < "${v_source}.2"
+rm -f "${v_source}.2"
 
 if [ ${v_ojvmpsu} -gt 0 ]
 then

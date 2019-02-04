@@ -22,9 +22,6 @@ DEF moat369_conf_compress_html  = 'ON'
 
 -- excluding some features from the reports substantially reduces usability with minimal performance gain
 DEF moat369_conf_incl_tkprof   = 'N'
-DEF moat369_conf_incl_wr_data  = 'N'
-DEF moat369_conf_incl_res      = 'N'
-DEF moat369_conf_incl_esp      = 'N'
 DEF moat369_conf_incl_opatch   = 'N'
 DEF moat369_conf_ask_license   = 'N'
 DEF moat369_conf_sql_format    = 'N'
