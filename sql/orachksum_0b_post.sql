@@ -4,9 +4,9 @@ UNDEF orachk_workdir
 UNDEF orachk_exec_sh
 
 -- Rename and zip Version file
-@@&&fc_zip_driver_files. &&orachk_version_file.
+HOS zip -mjT &&moat369_zip_filename. &&orachk_version_file. >> &&moat369_log3.
+HOS zip -mjT &&moat369_zip_filename. &&orachk_shexec_log. >> &&moat369_log3.
 @@&&fc_zip_driver_files. &&orachk_vers_def_file.
-@@&&fc_zip_driver_files. &&orachk_shexec_log.
 UNDEF orachk_version_file orachk_vers_def_file orachk_shexec_log
 
 -- Debug File
@@ -23,9 +23,7 @@ UNDEF orachk_ver_pdbs
 UNDEF orachk_skipif_unsupported
 
 UNDEF orachksum_fc_run_check_hash
--- UNDEF orachksum_fc_run_check_sha256
 UNDEF orachksum_fc_run_check_tables
-UNDEF orachksum_fc_run_check_exponly
 UNDEF orachksum_fc_gen_orig_table
 
 DECLARE

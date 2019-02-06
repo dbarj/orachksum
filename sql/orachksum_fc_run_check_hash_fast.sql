@@ -74,7 +74,8 @@ UNDEF orachk_tdf
 
 -- Generate DDL if orachk_step_code_driver is defined
 @@&&fc_def_empty_var. orachk_step_code_driver
-HOS if [ -n '&&orachk_step_code_driver.' ]; then sh &&sh_csv_to_metadata_ddl. &&orachk_csv_field_sep. &&orachk_csv_file. true 3 1 2 &&orachk_zip_file. >> "&&orachk_step_code_driver."; fi
+@@&&fc_def_empty_var. orachk_src_zip_file
+HOS if [ -n '&&orachk_step_code_driver.' ]; then sh &&sh_csv_to_metadata_ddl. &&orachk_csv_field_sep. &&orachk_csv_file. true 3 1 2 &&orachk_src_zip_file. >> "&&orachk_step_code_driver."; fi
 -- End
 
 DEF skip_html      = '--'

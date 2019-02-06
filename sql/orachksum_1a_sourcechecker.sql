@@ -15,6 +15,7 @@ DEF orachk_comp_incl_root = 'Y'
 
 @@&&fc_def_output_file. orachk_report_file  'report.txt'
 @@&&fc_def_output_file. orachk_zip_file     'orachk.zip'
+@@&&fc_def_output_file. orachk_src_zip_file 'codes.zip'
 
 @@&&fc_def_output_file. orachk_orig_file     '&&orachk_file_pref._orig.csv'
 
@@ -42,7 +43,7 @@ DEF orachk_comp_column  = '2,3'
 --------------
 
 DEF title = 'Objects with Difference';
-DEF totfiles = 200
+DEF totfiles = 100
 
 HOS if [ $(cat &&orachk_version_file. | grep "ORA-20000" | wc -l) -eq 1 ]; then echo > &&orachk_step_code_driver.; fi
 HOS if [ $(($(cat &&orachk_step_code_driver. | wc -l) / 9)) -gt &&totfiles. ]; then head -n $((9 * &&totfiles.)) &&orachk_step_code_driver. > &&orachk_step_code_driver..tmp; mv &&orachk_step_code_driver..tmp &&orachk_step_code_driver.; fi
@@ -107,10 +108,16 @@ HOS zip -mjT &&orachk_zip_file. &&orachk_orig_file.    >> &&moat369_log3.
 @@&&fc_encrypt_file. orachk_zip_file
 HOS zip -mjT &&moat369_zip_filename. &&orachk_zip_file. >> &&moat369_log3.
 
+@@&&fc_ren_output_file. orachk_src_zip_file
+@@&&fc_encrypt_file. orachk_src_zip_file
+HOS zip -mjT &&moat369_zip_filename. &&orachk_src_zip_file. >> &&moat369_log3.
+
+
 -- Reset Variables for orachksum
 UNDEF orachk_orig_file
 UNDEF orachk_report_file
 UNDEF orachk_zip_file
+UNDEF orachk_src_zip_file
 UNDEF orachk_comp_incl_root
 
 ---------------- END POSTTASKS 1 ----------------

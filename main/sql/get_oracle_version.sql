@@ -114,12 +114,12 @@ DECLARE
       ]' into V_OJVM;
     ELSIF v_ora_ver_major > 12 THEN
       execute immediate q'[
-      select substr(version,a,b-a) psu
+      select ID
       from (
-        select instr(version,'.',1,4)+1 a,instr(version,'OJVM') b,version,
+        select regexp_substr(substr(DESCRIPTION,instr(DESCRIPTION,'.',1,4)+1),'^[0-9]+') ID,
         rank() over (order by action_time desc) ordem
-        from sys.registry$history
-        where version like :1 || '.%' and namespace='SERVER' and action='jvmpsu.sql' and BUNDLE_SERIES is null
+        from sys.registry$sqlpatch
+        where source_version like :1 || '.%' and PATCH_TYPE='INTERIM' and FLAGS='NJ' and ACTION='APPLY' and STATUS='SUCCESS'
       ) where ordem=1
       ]' into V_OJVM using v_ora_ver_major;
     END IF;

@@ -55,6 +55,7 @@ HOS zip -mjT &&moat369_zip_filename. &&orachk_zip_file. >> &&moat369_log3.
 UNDEF orachk_orig_file
 UNDEF orachk_report_file
 UNDEF orachk_zip_file
+UNDEF orachk_src_zip_file
 UNDEF orachk_comp_incl_root
 UNDEF orachk_step_code_driver
 

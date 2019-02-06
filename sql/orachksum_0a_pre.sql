@@ -7,16 +7,19 @@ DEF orachk_exec_sh = '&&orachk_workdir./sql/exec_sh.sql'
 
 -- Define Debug file
 @@&&fc_def_output_file. orachk_dbgzip_file  'orachk_debug.zip'
-@@&&fc_def_output_file. orachk_shexec_log   'orachk_shexec.log'
+@@&&fc_def_output_file. orachk_shexec_log   'shexec.log'
+@@&&fc_seq_output_file. orachk_shexec_log
 
 -- Create Version file
 @@&&fc_def_output_file. orachk_version_file  'version.txt'
-@@&&fc_def_output_file. orachk_vers_def_file 'version_def.sql'
+@@&&fc_seq_output_file. orachk_version_file
+
 -- Check Oracle PSU/BP/OJVM information.
 @@&&fc_spool_start.
 @@&&orachk_workdir./sql/get_oracle_version.sql &&orachk_version_file.
 @@&&fc_spool_end.
 
+@@&&fc_def_output_file. orachk_vers_def_file 'version_def.sql'
 @@&&orachk_exec_sh &&orachk_workdir./sh/def_oracle_version.sh &&orachk_version_file. &&orachk_vers_def_file.
 @@&&orachk_vers_def_file.
 
@@ -77,13 +80,27 @@ decode(platform_id,
 
 COL cmd_find NEW_V clear
 
+-- If version is 12.2, change array size to avoid bug.
+
+@@&&fc_def_output_file. orachk_step_file 'orachk_step_file.sql'
+@@&&fc_spool_start.
+SPO &&orachk_step_file.
+PRO DEF fc_reset_defs_orig = '&&fc_reset_defs.'
+PRO DEF fc_reset_defs      = '&&moat369_sw_folder./orachksum_fc_reset_defs.sql'
+PRO SET ARRAY 999
+SPO OFF
+@@&&fc_spool_end.
+@@&&skip_ver_le_12_1.&&skip_ver_ge_18.&&orachk_step_file.
+HOS rm -f &&orachk_step_file.
+UNDEF orachk_step_file
+
 ---- Create objects for FAST EXECUTION MODE
 
 @@&&fc_def_output_file. orachk_step_file 'orachk_step_file.sql'
 @@&&fc_spool_start.
-SPOOL &&orachk_step_file.
+SPO &&orachk_step_file.
 SELECT '@@' || DECODE('&&orachk_method.','fast','','&&fc_skip_script.') || '&&moat369_sw_folder./orachksum_fc_fast_exttables_create.sql' FROM DUAL;
-SPOOL OFF
+SPO OFF
 @@&&fc_spool_end.
 @@&&orachk_step_file.
 HOS rm -f &&orachk_step_file.
