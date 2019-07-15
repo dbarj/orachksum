@@ -4,18 +4,18 @@
 # Last updated on: Dec/2016 by Rodrigo Jorge
 # ----------------------------------------------------------------------------
 set -e # Exit if error. Never remove it.
-if [ $# -ne 3 ]
-then
-  echo "$0: Three arguments are needed.. given: $#"
-  exit 1
-fi
-#set -x
 
-abortscript ()
+function abortscript ()
 {
     echo "$1"
 	exit 1
 }
+
+if [ $# -ne 3 ]
+then
+  abortscript "$0: Three arguments are needed.. given: $#"
+fi
+#set -x
 
 v_chksdir="$1"
 v_csvfile="$2"
@@ -42,8 +42,8 @@ then
   abortscript "${v_csvfile} not found."
 fi
 
-v_type=$(echo "$v_type" | ${TRCMD} 'a-z' 'A-Z')
-v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.txt" | ${AWKCMD} -F':' '{print $2}')
+v_type=$(${TRCMD} 'a-z' 'A-Z' <<< "$v_type")
+v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.csv" | ${AWKCMD} -F':' '{print $2}')
 
 if [ "${v_header}" = "" ]
 then

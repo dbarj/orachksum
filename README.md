@@ -126,6 +126,9 @@ Note: valid column range for first parameter is 1 to 3.
 
 ## Versions ##
 
+* 1904 (2019-07-02)
+  - Included 2019-Apr CPU.
+  - Database Vault checks included.
 * 1902 (2019-02-06)
   - Minor bug fix.
 * 1901 (2019-02-01)

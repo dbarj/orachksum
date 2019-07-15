@@ -74,7 +74,7 @@ printpercentage ()
 
 if [ -n "${v_col_change}" ]
 then
-  read v_col_rep v_col_comp <<< $(echo ${v_col_change} | ${AWKCMD} -F',' '{print $1, $2}')
+  read v_col_rep v_col_comp <<< $(${AWKCMD} -F',' '{print $1, $2}' <<< "${v_col_change}")
   [ "${v_col_rep}" -eq "${v_col_rep}" ]   2>/dev/null || abortscript "v_col_rep error. Found ${v_col_rep}"
   [ "${v_col_comp}" -eq "${v_col_comp}" ] 2>/dev/null || abortscript "v_col_comp error. Found ${v_col_rep}"
 fi
@@ -124,8 +124,8 @@ do
   line_base0=$(${AWKCMD} 'NR=='${curline} "${v_dbcsv_base0}")
   line_out0=$(${AWKCMD} 'NR=='${curline} "${v_dbcsv_out0}")
  fi
- read c_con_id <<< $(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$((v_last_col-2))']}')
- read c_hash   <<< $(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$((v_last_col-1))']}')
+ read c_con_id <<< $(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$((v_last_col-2))']}' <<< "$c_line")
+ read c_hash   <<< $(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$((v_last_col-1))']}' <<< "$c_line")
  [ -n "${c_con_id}" ] && exit_not_number "${c_con_id}"
  c_conid_comp=${c_con_id}
  [ -n "${c_con_id}" ] && { test ${c_con_id} -gt 2 && c_conid_comp=2; }

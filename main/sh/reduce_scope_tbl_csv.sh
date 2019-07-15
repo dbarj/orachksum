@@ -113,8 +113,8 @@ perc_b4=-1
 
 while read -r c_line || [ -n "$c_line" ]
 do
- c_line_print=$(echo "$c_line" | ${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}')
- read c_series c_oraversion c_from c_to <<< $(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}')
+ c_line_print=$(${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}' <<< "$c_line")
+ read c_series c_oraversion c_from c_to <<< $(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}' <<< "$c_line")
 
  if [ "${v_oraversion}" = "${c_oraversion}" -a "${c_series}" = "${v_patch_series}" -a ${v_patch_version} -ge ${c_from} -a ${v_patch_version} -le ${c_to} ]
  then
@@ -135,8 +135,8 @@ then
   ## Remove Privs
   while read -r c_line || [ -n "$c_line" ]
   do
-    c_line_print=$(echo "$c_line" | ${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}')
-    read c_series c_oraversion c_from c_to <<< $(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}')
+    c_line_print=$(${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}' <<< "$c_line")
+    read c_series c_oraversion c_from c_to <<< $(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}' <<< "$c_line")
 
     if [ "${v_oraversion}" = "${c_oraversion}" -a "${c_series}" = "OJVM" -a -1 -ge ${c_from} -a -1 -le ${c_to} ]
     then
@@ -151,9 +151,9 @@ then
   ## Add OJVM
   while read -r c_line || [ -n "$c_line" ]
   do
-    c_line_print=$(echo "$c_line" | ${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}')
-    read c_series c_oraversion c_from c_to <<< $(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}')
-    c_flag=$(echo "$c_line" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_flag']}')
+    c_line_print=$(${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}' <<< "$c_line")
+    read c_series c_oraversion c_from c_to <<< $(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_series'], csv['$v_awk_col_oraversion'], csv['$v_awk_col_psu_from'], csv['$v_awk_col_psu_to']}' <<< "$c_line")
+    c_flag=$(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print csv['$v_awk_col_flag']}' <<< "$c_line")
 
     if [ "${v_oraversion}" = "${c_oraversion}" -a "${c_series}" = "OJVM" -a ${v_ojvmpsu} -ge ${c_from} -a ${v_ojvmpsu} -le ${c_to} ]
     then

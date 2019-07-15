@@ -4,17 +4,17 @@
 # Last updated on: Dec/2016 by Rodrigo Jorge
 # ----------------------------------------------------------------------------
 set -e # Exit if error
-if [ $# -ne 6 -a $# -ne 7 ]
-then
-  echo "$0: Six or Seven arguments are needed.. given: $#"
-  exit 1
-fi
 
-abortscript ()
+function abortscript ()
 {
     echo "$1"
 	exit 1
 }
+
+if [ $# -ne 6 -a $# -ne 7 ]
+then
+  abortscript "$0: Six or Seven arguments are needed.. given: $#"
+fi
 
 v_chksdir="$1"
 v_version_file="$2"
@@ -56,17 +56,17 @@ else
   v_pdbs="${v_output_array[4]}"
 fi
 
-v_type=$(echo "${v_file_pref}" | ${TRCMD} 'a-z' 'A-Z')
-v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.txt" | ${AWKCMD} -F':' '{print $2}')
+v_type=$(${TRCMD} 'a-z' 'A-Z' <<< "${v_file_pref}")
+v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.csv" | ${AWKCMD} -F':' '{print $2}')
 if [ "${v_header}" = "" ]
 then
   v_num_cols=0
 else
-  v_num_cols=$(echo "$v_header" | ${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print a}')
+  v_num_cols=$(${AWKCMD_CSV} --source '{a=csv_parse_record($0, separator, enclosure, csv); print a}' <<< "$v_header")
   if [ -n "${v_col_change}" ]
   then
     # Count how many columns are being replaced. If v_col_change is "N,M" it will be 1. If v_col_change is "N,M;O,P" it will be 2.
-    v_rep_cols=$(echo "${v_col_change}" | ${AWKCMD} -F";" '{print NF}')
+    v_rep_cols=$(${AWKCMD} -F";" '{print NF}' <<< "${v_col_change}")
     v_num_cols=$((v_num_cols+v_rep_cols))
   fi
   # When Header has "RESULT", it already counts +1, so no 7th parameter is needed. Only applied for hash checks.

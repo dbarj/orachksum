@@ -35,8 +35,8 @@ else
   TRCMD=tr
 fi
 
-v_type=$(echo "${v_file_pref}" | ${TRCMD} 'a-z' 'A-Z')
-v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.txt" | ${AWKCMD} -F':' '{print $2}')
+v_type=$(${TRCMD} 'a-z' 'A-Z' <<< "${v_file_pref}")
+v_header=$(${GREPCMD} -e "^${v_type}:" "${v_chksdir}/sh/headers.csv" | ${AWKCMD} -F':' '{print $2}')
 if [ "${v_header}" = "" ]
 then
   abortscript "${v_type} not found."

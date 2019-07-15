@@ -94,6 +94,11 @@ SPO OFF
 HOS rm -f &&orachk_step_file.
 UNDEF orachk_step_file
 
+---- Check if DatabaseVault tables exist
+
+COL orachk_skip_db_vault NEW_V orachk_skip_db_vault
+select DECODE(COUNT(*),0,'--') orachk_skip_db_vault from dba_objects where owner='DVSYS' and object_name='DBA_DV_REALM';
+
 ---- Create objects for FAST EXECUTION MODE
 
 @@&&fc_def_output_file. orachk_step_file 'orachk_step_file.sql'

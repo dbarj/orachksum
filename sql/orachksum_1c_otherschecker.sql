@@ -11,6 +11,7 @@
 ---------------- END PRETASKS 1 ----------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_SYNONYMS' 'DBA_SYNONYMS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Synonyms'
 DEF orachk_file_pref     = 'synonyms'
 DEF orachk_srczip_pref   = 'synonyms'
@@ -21,6 +22,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_JAVA_POLICY' 'DBA_JAVA_POLICY'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Java Policy'
 DEF orachk_file_pref     = 'java_pol'
 DEF orachk_srczip_pref   = 'java_pol'
@@ -31,6 +33,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_TS_QUOTAS' 'DBA_TS_QUOTAS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Tablespace Quotas'
 DEF orachk_file_pref     = 'ts_quotas'
 DEF orachk_srczip_pref   = 'ts_quotas'
@@ -41,6 +44,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_POLICIES' 'DBA_POLICIES'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'VPD Policies'
 DEF orachk_file_pref     = 'policies'
 DEF orachk_srczip_pref   = 'policies'
@@ -51,6 +55,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_TRIGGERS' 'DBA_TRIGGERS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Triggers'
 DEF orachk_file_pref     = 'triggers'
 DEF orachk_srczip_pref   = 'triggers'

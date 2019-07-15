@@ -12,6 +12,7 @@
 ---------------- END PRETASKS 1 ----------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_OBJ_AUDIT_OPTS' 'DBA_OBJ_AUDIT_OPTS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Object Audit Options'
 DEF orachk_file_pref     = 'obj_audit_opts'
 DEF orachk_srczip_pref   = 'audit'
@@ -22,6 +23,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_STMT_AUDIT_OPTS' 'DBA_STMT_AUDIT_OPTS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Statement Audit Options'
 DEF orachk_file_pref     = 'stmt_audit_opts'
 DEF orachk_srczip_pref   = 'audit'
@@ -32,6 +34,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_PRIV_AUDIT_OPTS' 'DBA_PRIV_AUDIT_OPTS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Privileges Audit Options'
 DEF orachk_file_pref     = 'priv_audit_opts'
 DEF orachk_srczip_pref   = 'audit'
@@ -42,6 +45,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_AUDIT_POLICIES' 'DBA_AUDIT_POLICIES'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Audit Policies'
 DEF orachk_file_pref     = 'audit_policies'
 DEF orachk_srczip_pref   = 'audit'
@@ -52,6 +56,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_AUDIT_POLICY_COLUMNS' 'DBA_AUDIT_POLICY_COLUMNS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Audit Policy Columns'
 DEF orachk_file_pref     = 'audit_policy_columns'
 DEF orachk_srczip_pref   = 'audit'
@@ -62,6 +67,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'AUDIT_UNIFIED_POLICIES' 'AUDIT_UNIFIED_POLICIES'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Audit Unified Policies'
 DEF orachk_file_pref     = 'audit_unified_policies'
 DEF orachk_srczip_pref   = 'audit'

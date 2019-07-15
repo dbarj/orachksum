@@ -8,6 +8,7 @@
 1d,filechecker.sql,'File Checker (Linux only)',&&orachk_skipif_unsupported.
 2a,schedulerchecker.sql,'Scheduler Checker',&&orachk_skipif_unsupported.
 2b,auditchecker.sql,'Audit Checker',&&orachk_skipif_unsupported.
+2c,dvchecker.sql,'Database Vault Checker',&&orachk_skipif_unsupported.&&orachk_skip_db_vault.
 3a,info.sql,'Instance Info'
 3b,logs.sql,'Logs'
 --

@@ -58,7 +58,7 @@ then
 fi
 
 # Number of fields
-v_tot_fld=$(echo "${v_col_change}" | ${AWKCMD} -F';' '{print NF}')
+v_tot_fld=$(${AWKCMD} -F';' '{print NF}' <<< "${v_col_change}")
 
 # Replace in ${v_col_change} provided string (param1) all numbers greater than param2 to curvalue-1.
 remake_colchange ()
@@ -75,7 +75,7 @@ remake_colchange ()
     v_out_str="${v_out_str}${v_col_1},${v_col_2};"
     v_fld_rep=$((v_fld_rep+1))
   done
-  v_out_str=$(echo "${v_out_str}" | sed 's/.$//')
+  v_out_str=$(sed 's/.$//' <<< "${v_out_str}")
   echo "$v_out_str"
 }
 

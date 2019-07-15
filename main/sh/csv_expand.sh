@@ -61,7 +61,7 @@ fi
 
 #####################################
 
-dist_con_ids_list=$(echo "${v_list_pdbs}" | tr "," "\n")
+dist_con_ids_list=$(tr "," "\n" <<< "${v_list_pdbs}")
 dist_con_ids=(${dist_con_ids_list})
 for t_con_id in "${dist_con_ids[@]}"
 do

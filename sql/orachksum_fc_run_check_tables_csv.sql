@@ -4,7 +4,7 @@
 -- ----------------------------------------------------------------------------
 
 DEF title = '&&orachk_subject. - Extra';
-DEF main_table = '&&orachk_table_name.'
+DEF main_table = '&&orachk_table_owner..&&orachk_table_name.'
 
 @@&&fc_def_output_file. orachk_db_file       '&&orachk_file_pref._db_out.csv'
 @@&&fc_def_output_file. orachk_orig_file     '&&orachk_file_pref._orig.csv'
@@ -110,7 +110,7 @@ DEF sql_show = 'N'
 --------------
 
 DEF title = '&&orachk_subject. - Missing';
-DEF main_table = '&&orachk_table_name.'
+DEF main_table = '&&orachk_table_owner..&&orachk_table_name.'
 
 @@&&fc_def_output_file. one_spool_html_file '&&orachk_file_pref._result_miss.html'
 @@&&fc_def_output_file. orachk_csv_file     '&&orachk_file_pref._result_miss.csv'
@@ -187,6 +187,7 @@ HOS if [ -f &&orachk_db_comp. ];   then zip -mjT &&orachk_zip_file. &&orachk_db_
 HOS if [ -f &&orachk_orig_comp. ]; then zip -mjT &&orachk_zip_file. &&orachk_orig_comp. >> &&moat369_log3.; fi
 
 UNDEF orachk_table_name
+UNDEF orachk_table_owner
 UNDEF orachk_subject
 UNDEF orachk_file_pref
 UNDEF orachk_srczip_pref

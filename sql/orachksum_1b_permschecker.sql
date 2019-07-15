@@ -12,6 +12,7 @@
 ---------------- END PRETASKS 1 ----------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_TAB_PRIVS' 'DBA_TAB_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Table Privs'
 DEF orachk_file_pref     = 'privs_tab'
 DEF orachk_srczip_pref   = 'privs'
@@ -22,6 +23,7 @@ DEF orachk_comp_column   = '3,9'
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_TAB_PRIVS' 'DBA_TAB_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Table Privs (Non-Internals)'
 DEF orachk_file_pref     = 'privs_tab_others'
 DEF orachk_srczip_pref   = 'privs'
@@ -32,6 +34,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_COL_PRIVS' 'DBA_COL_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Column Privs'
 DEF orachk_file_pref     = 'privs_col'
 DEF orachk_srczip_pref   = 'privs'
@@ -42,6 +45,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_SYS_PRIVS' 'DBA_SYS_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'System Privs'
 DEF orachk_file_pref     = 'privs_sys'
 DEF orachk_srczip_pref   = 'privs'
@@ -52,6 +56,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_ROLE_PRIVS' 'DBA_ROLE_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Role Privs'
 DEF orachk_file_pref     = 'privs_rol'
 DEF orachk_srczip_pref   = 'privs'
@@ -62,6 +67,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_ROLE_PRIVS' 'DBA_ROLE_PRIVS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Role Privs (Non-Internals)'
 DEF orachk_file_pref     = 'privs_rol_others'
 DEF orachk_srczip_pref   = 'privs'

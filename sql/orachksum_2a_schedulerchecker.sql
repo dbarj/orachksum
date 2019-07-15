@@ -12,6 +12,7 @@
 ---------------- END PRETASKS 1 ----------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_JOBS' 'DBA_JOBS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Legacy Jobs'
 DEF orachk_file_pref     = 'legacy_jobs'
 DEF orachk_srczip_pref   = 'sched'
@@ -22,6 +23,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_SCHEDULER_JOBS' 'DBA_SCHEDULER_JOBS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Scheduler Jobs'
 DEF orachk_file_pref     = 'jobs'
 DEF orachk_srczip_pref   = 'sched'
@@ -32,6 +34,7 @@ DEF orachk_comp_column   = ''
 --------------
 
 @@&&fc_set_value_var_decode. orachk_table_name '&&is_ver_ge_12.' 'Y' 'CDB_SCHEDULER_PROGRAMS' 'DBA_SCHEDULER_PROGRAMS'
+DEF orachk_table_owner   = 'SYS'
 DEF orachk_subject       = 'Scheduler Programs'
 DEF orachk_file_pref     = 'programs'
 DEF orachk_srczip_pref   = 'sched'

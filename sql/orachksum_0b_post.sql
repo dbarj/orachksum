@@ -21,6 +21,7 @@ UNDEF orachk_ver_ojvmpsu
 UNDEF orachk_ver_pdbs
 
 UNDEF orachk_skipif_unsupported
+UNDEF orachk_skip_db_vault
 
 UNDEF orachksum_fc_run_check_hash
 UNDEF orachksum_fc_run_check_tables
