@@ -44,6 +44,13 @@ If you have one-off patches applied on your database you may face some false-pos
 * Tablespace Quotas
 * Java Policies
 * VPD Policies
+* Database Vault:
+  * Realms
+  * Realm Auths
+  * Realm Objects
+  * Rules
+  * Rule Set
+  * Command Rules
 * Scheduler Objects:
   * Legacy Jobs
   * Scheduler Jobs
@@ -60,11 +67,9 @@ If you have one-off patches applied on your database you may face some false-pos
 
 The ORACHKSUM utility executes 2 types of compares to verify for integrity changes:
 
-1. Sum Compares
-For all objects that exists in DBA_SOURCE (Packages, Triggers, etc), all VIEWS and also some database files (like $ORACLE_HOME/rdbms/sql/), the tool will compare the sha1sum of the object in the target database with the one created originally by oracle. The tool will also show **matches** and **no matches** in pie graph of the section 1a:
+1. **Sum Compares** - For all objects that exists in DBA_SOURCE (Packages, Triggers, etc), all VIEWS and also some database files (like $ORACLE_HOME/rdbms/sql/), the tool will compare the sha1sum of the object in the target database with the one created originally by oracle. The tool will also show **matches** and **no matches** in pie graph of the section 1a:
 
-2. Line Compares
-For all the other type of objects (like privileges, jobs, audits, etc), the tool will fully compare what you have with the oracle initially install using a **_diff_** of your table with the oracle original table. Thus, for each type of object, there will be 2 reports: one showing the extra lines you have and the other showing what is missing in your database:
+2. **Line Compares** - For all the other type of objects (like privileges, jobs, audits, etc), the tool will fully compare what you have with the oracle initially install using a **_diff_** of your table with the oracle original table. Thus, for each type of object, there will be 2 reports: one showing the extra lines you have and the other showing what is missing in your database:
 
 ## Execution Steps ##
 
@@ -124,21 +129,10 @@ SQL> @orachksum.sql 3b
 
 Note: valid column range for first parameter is 1 to 3. 
 
-## Versions ##
+## Latest change ##
 
-* 1904 (2019-07-02)
-  - Included 2019-Apr CPU.
-  - Database Vault checks included.
-* 1902 (2019-02-06)
-  - Minor bug fix.
-* 1901 (2019-02-01)
-  - Included 2019-Jan CPU.
-* 1811 (2018-11-26)
-  - Included 2018-Oct CPU.
-  - Added 18c support.
-* 1810 (2018-10-01)
-  - Minor Improvements. First Public Release.
-* 1804 (2018-04-30)
-  - Included Fast AWK Modes.
-* 1801 (2018-01-10)
-  - Initial Version.
+* 1905 (2019-08-04)
+  - Included 2019-Jul CPU.
+  - Removed some repetitive calls for exclude_seed_cdb_view.
+
+Check **CHANGELOG.md** for more info.

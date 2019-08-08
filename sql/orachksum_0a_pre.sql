@@ -80,6 +80,22 @@ decode(platform_id,
 
 COL cmd_find NEW_V clear
 
+-- Include SEED on CDB views output
+
+-- For 12.1.0.1, it's always included.
+DECLARE
+  V_ORA_VERSION   VARCHAR2(20);
+  V_ORA_VER_MAJOR NUMBER;
+BEGIN
+  select substr(version,1,instr(version,'.',1,4)-1),substr(version,1,instr(version,'.',1,1)-1) into v_ora_version,v_ora_ver_major from sys.v$instance;
+  IF v_ora_version IN ('12.1.0.2') THEN
+    execute immediate 'alter session set exclude_seed_cdb_view=false';
+  ELSIF v_ora_ver_major >= 12 THEN
+    execute immediate 'alter session set "_exclude_seed_cdb_view"=false';
+  END IF;
+END;
+/
+
 -- If version is 12.2, change array size to avoid bug.
 
 @@&&fc_def_output_file. orachk_step_file 'orachk_step_file.sql'

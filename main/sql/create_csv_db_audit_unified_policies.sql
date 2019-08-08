@@ -3,19 +3,6 @@ SET FEEDBACK OFF
 SET TRIM ON
 SET TRIMSPOOL ON
 
-DECLARE
-  V_ORA_VER_MAJOR NUMBER;
-  V_ORA_VERSION   VARCHAR2(20);
-BEGIN
-  select substr(version,1,instr(version,'.',1,4)-1),substr(version,1,instr(version,'.',1,1)-1) into v_ora_version,v_ora_ver_major from sys.v$instance;
-  IF v_ora_version IN ('12.1.0.1','12.1.0.2') THEN
-    execute immediate 'alter session set exclude_seed_cdb_view=false';
-  ELSIF v_ora_ver_major >= 12 THEN
-    execute immediate 'alter session set "_exclude_seed_cdb_view"=false';
-  END IF;
-END;
-/
-
 SPOOL &1
 DECLARE
   V_ENCLOSURE VARCHAR2(1) := '"';
@@ -45,8 +32,6 @@ DECLARE
   I I_T;
 
   FUNCTION QA (IN_VALUE IN VARCHAR2) RETURN VARCHAR2 AS
-    V_ENCLOSURE VARCHAR2(1) := '"';
-    V_SEPARATOR VARCHAR2(1) := ',';
     OUT_VALUE   VARCHAR2(4000);
   BEGIN
     IF IN_VALUE IS NOT NULL THEN
