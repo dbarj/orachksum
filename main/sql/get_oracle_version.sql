@@ -64,7 +64,7 @@ DECLARE
       execute immediate q'[
       select ID, action_time
       from (
-        select regexp_substr(substr(DESCRIPTION,instr(DESCRIPTION,'.',1,4)+1),'^[0-9]+') ID, action_time, rank() over (order by action_time desc) ordem
+        select regexp_substr(substr(TARGET_VERSION,instr(TARGET_VERSION,'.',1,1)+1),'^[0-9]+') ID, action_time, rank() over (order by action_time desc) ordem
         from sys.registry$sqlpatch
         where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RU'
       ) where ordem=1
@@ -163,12 +163,10 @@ DECLARE
       ]' into V_BP_RUR, V_BP_RUR_DATE;
     ELSIF v_ora_ver_major > 12 THEN
       execute immediate q'[
-      select substr(description,a,instr(description,' ',a)-a) ID, action_time
+      select ID, action_time
       from (
-        select instr(description,TARGET_VERSION_4D)+length(TARGET_VERSION_4D)+1 a, description,
-               action_time,
-               rank() over (order by action_time desc) ordem
-        from (select t1.*, substr(t1.TARGET_VERSION,1,instr(t1.TARGET_VERSION,'.',1,4)-1) TARGET_VERSION_4D  from sys.registry$sqlpatch t1)
+        select regexp_substr(substr(TARGET_VERSION,instr(TARGET_VERSION,'.',2,1)+1),'^[0-9]+') ID, action_time, rank() over (order by action_time desc) ordem
+        from sys.registry$sqlpatch
         where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RUR'
       ) where ordem=1
       ]' into V_BP_RUR,V_BP_RUR_DATE using v_ora_ver_major;
@@ -226,7 +224,7 @@ DECLARE
 BEGIN
   DBMS_OUTPUT.ENABLE(10000000);
   select substr(version,1,instr(version,'.',1,4)-1),substr(version,1,instr(version,'.',1,1)-1) into v_ora_version,v_ora_ver_major from sys.v$instance;
-  IF v_ora_version NOT IN  ('11.2.0.4', '12.1.0.1', '12.1.0.2', '12.2.0.1', '18.0.0.0') THEN
+  IF v_ora_version NOT IN  ('11.2.0.4', '12.1.0.1', '12.1.0.2', '12.2.0.1', '18.0.0.0', '19.0.0.0') THEN
     RAISE_APPLICATION_ERROR(-20000,'Unsupported Version');
   END IF;
   SET_DBPSU_OR_RU();

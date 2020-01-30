@@ -17,7 +17,8 @@ Curently, it supports the following Oracle DB versions:
 * 11.2.0.4
 * 12.1.0.2
 * 12.2.0.1
-* Any 18c
+* 18c
+* 19c
 
 The ORACHKSUM signature dictionary files include changes performed by any **PSU, BP, RU, RUR or OJVM PSU** for the above releases.
 If you have one-off patches applied on your database you may face some false-positives results during scans.
@@ -131,8 +132,8 @@ Note: valid column range for first parameter is 1 to 3.
 
 ## Latest change ##
 
-* 1905 (2019-08-04)
-  - Included 2019-Jul CPU.
-  - Removed some repetitive calls for exclude_seed_cdb_view.
+* 20.01 (2020-01-29)
+  - Included Jan-2020 CPU.
+  - Changed version number pattern.
 
 Check **CHANGELOG.md** for more info.

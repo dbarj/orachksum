@@ -49,7 +49,7 @@ EXEC :sql_text := '$ opatch lspatches';
 
 -----------------------------------------
 
-DEF title = 'OPatch lsinv'
+DEF title = 'OPatch lsinv details'
 @@&&fc_def_output_file. out_filename 'opatch_lsinv_details.txt'
 
 HOS $ORACLE_HOME/OPatch/opatch lsinv -details > &&out_filename.

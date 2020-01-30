@@ -1,5 +1,13 @@
 ## Versions ##
 
+* 20.01 (2020-01-29)
+  - Included Jan-2020 CPU.
+  - Changed version number pattern.
+
+* 1906 (2019-10-24)
+  - Included 2019-Oct CPU.
+  - Added 19c support.
+
 * 1905 (2019-08-04)
   - Included 2019-Jul CPU.
   - Removed some repetitive calls for exclude_seed_cdb_view.
