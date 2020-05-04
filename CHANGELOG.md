@@ -1,5 +1,9 @@
 ## Versions ##
 
+* 20.02 (2020-04-17)
+  - Included Apr-2020 CPU.
+  - MOAT369 included.
+
 * 20.01 (2020-01-29)
   - Included Jan-2020 CPU.
   - Changed version number pattern.

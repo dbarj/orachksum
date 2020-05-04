@@ -111,6 +111,11 @@ totline=$(cat "${v_source}.2" | wc -l)
 curline=1
 perc_b4=-1
 
+# Steps:
+# 1 - Add all lines that have patch set series matching the provided parameter and are within the PSU range.
+# 2 - If OJVM patch is applied: remove already inserted lines if there is a -1/-1 entry: some OJVMs remove/change the entries.
+# 3 - If OJVM patch is applied: add lines on OJVM PSU range if flag to remove (last column) is null.
+
 while read -r c_line || [ -n "$c_line" ]
 do
  c_line_print=$(${AWKCMD_CSV} --source '{csv_print_until_field_record($0, separator, enclosure, '$v_last_col')}' <<< "$c_line")

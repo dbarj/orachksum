@@ -82,21 +82,13 @@ $ unzip orachksum.zip
 $ cd orachksum-master/
 ```
 
-2. Download and unzip latest moat369 API inside orachksum_master directory. Rename extract folder to moat369:
-
-```
-$ wget -O moat369.zip https://github.com/dbarj/moat369/archive/master.zip
-$ unzip moat369.zip
-$ mv moat369-master/ moat369/
-```
-
-3. Connect as SYS, DBA, or any User with Data Dictionary access:
+2. Connect as SYS, DBA, or any User with Data Dictionary access:
 
 ```
 $ sqlplus / as sysdba
 ```
 
-4. Execute orachksum.sql:
+3. Execute orachksum.sql:
 
 ```
 SQL> @orachksum.sql
@@ -132,8 +124,8 @@ Note: valid column range for first parameter is 1 to 3.
 
 ## Latest change ##
 
-* 20.01 (2020-01-29)
-  - Included Jan-2020 CPU.
-  - Changed version number pattern.
+* 20.02 (2020-04-17)
+  - Included Apr-2020 CPU.
+  - MOAT369 included.
 
 Check **CHANGELOG.md** for more info.
