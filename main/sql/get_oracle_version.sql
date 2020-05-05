@@ -62,13 +62,11 @@ DECLARE
       ]' into V_PSU_RU,V_PSU_RU_DATE;
     ELSIF v_ora_ver_major > 12 THEN
       execute immediate q'[
-      select ID, action_time
-      from (
-        select regexp_substr(substr(TARGET_VERSION,instr(TARGET_VERSION,'.',1,1)+1),'^[0-9]+') ID, action_time, rank() over (order by action_time desc) ordem
-        from sys.registry$sqlpatch
-        where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RU'
-      ) where ordem=1
-      ]' into V_PSU_RU,V_PSU_RU_DATE using v_ora_ver_major;
+      select id, action_time
+      from
+        (select regexp_substr(substr(version_full,instr(version_full,'.',1,1)+1),'^[0-9]+') id from v$instance) t1,
+        (select created action_time from v$database) t2
+      ]' into V_PSU_RU,V_PSU_RU_DATE;
     END IF;
   EXCEPTION
     WHEN NO_DATA_FOUND THEN V_PSU_RU:=0;
@@ -162,14 +160,13 @@ DECLARE
       ) where ordem=1
       ]' into V_BP_RUR, V_BP_RUR_DATE;
     ELSIF v_ora_ver_major > 12 THEN
+      -- Get the third digit of Oracle Version. If is not 0, put date ahead to pick the RUR when comparting with RU.
       execute immediate q'[
-      select ID, action_time
-      from (
-        select regexp_substr(substr(TARGET_VERSION,instr(TARGET_VERSION,'.',2,1)+1),'^[0-9]+') ID, action_time, rank() over (order by action_time desc) ordem
-        from sys.registry$sqlpatch
-        where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RUR'
-      ) where ordem=1
-      ]' into V_BP_RUR,V_BP_RUR_DATE using v_ora_ver_major;
+      select id, decode(id,0,action_time-1,action_time+1) action_time
+      from
+        (select regexp_substr(substr(version_full,instr(version_full,'.',1,2)+1),'^[0-9]+') id from v$instance) t1,
+        (select created action_time from v$database) t2
+      ]' into V_BP_RUR,V_BP_RUR_DATE;
     END IF;
   EXCEPTION
     WHEN NO_DATA_FOUND THEN V_BP_RUR:=0;
@@ -190,11 +187,10 @@ DECLARE
       execute immediate q'[
       select RU_BASE || 'RUR'
       from (
-        select substr(TARGET_VERSION,1,instr(TARGET_VERSION,'.',1,2)-1) RU_BASE, rank() over (order by action_time desc) ordem
-        from sys.registry$sqlpatch
-        where source_version like :1 || '.%' and status='SUCCESS' and action='APPLY' and PATCH_TYPE='RUR'
-      ) where ordem=1
-      ]' into V_RUR_RUBASE using v_ora_ver_major;
+        select substr(version_full,1,instr(version_full,'.',1,2)-1) RU_BASE
+        from v$instance
+      )
+      ]' into V_RUR_RUBASE;
     END IF;
   EXCEPTION
     WHEN NO_DATA_FOUND THEN V_RUR_RUBASE:=0;
