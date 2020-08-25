@@ -1,5 +1,9 @@
 ## Versions ##
 
+* 20.03 (2020-08-23)
+  - Included Jul-2020 CPU.
+  - MOAT369 updated to v20.02.
+
 * 20.02 (2020-04-17)
   - Included Apr-2020 CPU.
   - MOAT369 included.

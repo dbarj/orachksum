@@ -53,13 +53,11 @@ t_res AS (
   SELECT msg, cnt, sum(cnt) over () total FROM t_src
 )
 SELECT msg, cnt,
-       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent,
-       null dummy_01
+       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent
 FROM   t_res
 where  total>0
 UNION
-SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent,
-       null dummy_01
+SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent
 FROM   t_res
 where  total=0
 ORDER BY 3 DESC
@@ -76,7 +74,7 @@ UNDEF orachk_nmc
 UNDEF orachk_nfd
 UNDEF orachk_tdf
 
-DEF skip_html      = '--'
+DEF skip_html      = ''
 DEF skip_pch       = ''
 DEF skip_html_file = ''
 DEF skip_text_file = ''
@@ -85,8 +83,9 @@ DEF one_spool_text_file = '&&orachk_csv_file.'
 DEF one_spool_text_file_type = 'csv'
 DEF one_spool_text_file_rename = 'Y'
 DEF one_spool_html_desc_table = 'Y'
+DEF one_spool_html_file_type = 'details'
 
-DEF sql_show = 'N'
+--DEF sql_show = 'N'
 
 @@&&9a_pre_one.
 
@@ -126,13 +125,11 @@ t_res AS (
   SELECT msg, cnt, sum(cnt) over () total FROM t_src
 )
 SELECT msg, cnt,
-       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent,
-       null dummy_01
+       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent
 FROM   t_res
 where  total>0
 UNION
-SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent,
-       null dummy_01
+SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent
 FROM   t_res
 where  total=0
 ORDER BY 3 DESC
@@ -149,7 +146,7 @@ UNDEF orachk_nmc
 UNDEF orachk_nfd
 UNDEF orachk_tdf
 
-DEF skip_html      = '--'
+DEF skip_html      = ''
 DEF skip_pch       = ''
 DEF skip_html_file = ''
 DEF skip_text_file = ''
@@ -158,8 +155,9 @@ DEF one_spool_text_file = '&&orachk_csv_file.'
 DEF one_spool_text_file_type = 'csv'
 DEF one_spool_text_file_rename = 'Y'
 DEF one_spool_html_desc_table = 'Y'
+DEF one_spool_html_file_type = 'details'
 
-DEF sql_show = 'N'
+--DEF sql_show = 'N'
 
 @@&&9a_pre_one.
 

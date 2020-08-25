@@ -1,5 +1,12 @@
 ----------------------------------------
 
+DEF title = 'Instance'
+DEF main_table = 'gv$instance'
+@@&&fc_gen_select_star_query. '&&main_table.' 'sql_text'
+@@&&9a_pre_one.
+
+----------------------------------------
+
 DEF title = 'Registry'
 @@&&fc_set_value_var_decode. 'main_table' '&&is_cdb.' 'Y' 'CDB_REGISTRY' 'DBA_REGISTRY'
 @@&&fc_gen_select_star_query. '&&main_table.' 'sql_text'

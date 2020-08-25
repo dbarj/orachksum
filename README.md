@@ -68,9 +68,9 @@ If you have one-off patches applied on your database you may face some false-pos
 
 The ORACHKSUM utility executes 2 types of compares to verify for integrity changes:
 
-1. **Sum Compares** - For all objects that exists in DBA_SOURCE (Packages, Triggers, etc), all VIEWS and also some database files (like $ORACLE_HOME/rdbms/sql/), the tool will compare the sha1sum of the object in the target database with the one created originally by oracle. The tool will also show **matches** and **no matches** in pie graph of the section 1a:
+1. **Sum Compares** - For all objects that exists in DBA_SOURCE (Packages, Triggers, etc), all VIEWS and also some database files (like $ORACLE_HOME/rdbms/sql/), the tool will compare the sha1sum of the object in the target database with the one created originally by oracle. The tool will also show **matches** and **no matches** in pie graph of the section 1a.
 
-2. **Line Compares** - For all the other type of objects (like privileges, jobs, audits, etc), the tool will fully compare what you have with the oracle initially install using a **_diff_** of your table with the oracle original table. Thus, for each type of object, there will be 2 reports: one showing the extra lines you have and the other showing what is missing in your database:
+2. **Line Compares** - For all the other type of objects (like privileges, jobs, audits, etc), the tool will fully compare what you have with the oracle initially install using a **_diff_** of your table with the oracle original table. Thus, for each type of object, there will be 2 reports: one showing the extra lines you have and the other showing what is missing in your database.
 
 ## Execution Steps ##
 
@@ -124,8 +124,8 @@ Note: valid column range for first parameter is 1 to 3.
 
 ## Latest change ##
 
-* 20.02 (2020-04-17)
-  - Included Apr-2020 CPU.
-  - MOAT369 included.
+* 20.03 (2020-08-23)
+  - Included Jul-2020 CPU.
+  - MOAT369 updated to v20.02.
 
-Check **CHANGELOG.md** for more info.
+Check **[CHANGELOG.md](https://github.com/dbarj/orachksum/blob/master/CHANGELOG.md)** for more info.

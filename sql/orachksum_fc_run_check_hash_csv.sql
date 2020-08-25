@@ -54,13 +54,11 @@ t_res AS (
   SELECT msg, cnt, sum(cnt) over () total FROM t_src
 )
 SELECT msg, cnt,
-       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent,
-       null dummy_01
+       trim(to_char(round(cnt/decode(total,0,1,total),4)*100,'990D99')) percent
 FROM   t_res
 where  total>0
 UNION
-SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent,
-       null dummy_01
+SELECT 'No Lines Returned' msg, 1 cnt, to_char(100,'990D99') percent
 FROM   t_res
 where  total=0
 ORDER BY 3 DESC
@@ -84,7 +82,7 @@ UNDEF orachk_tdf
 HOS if [ -n '&&orachk_step_code_driver.' ]; then sh &&sh_csv_to_metadata_ddl. &&orachk_csv_field_sep. &&orachk_csv_file. true 3 1 2 &&orachk_src_zip_file. >> "&&orachk_step_code_driver."; fi
 -- End
 
-DEF skip_html      = '--'
+DEF skip_html      = ''
 DEF skip_pch       = ''
 DEF skip_html_file = ''
 DEF skip_text_file = ''
@@ -92,8 +90,9 @@ DEF skip_text_file = ''
 DEF one_spool_text_file = '&&orachk_csv_file.'
 DEF one_spool_text_file_type = 'csv'
 DEF one_spool_text_file_rename = 'Y'
+DEF one_spool_html_file_type = 'details'
 
-DEF sql_show = 'N'
+--DEF sql_show = 'N'
 
 @@&&9a_pre_one.
 
