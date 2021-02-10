@@ -124,8 +124,7 @@ Note: valid column range for first parameter is 1 to 3.
 
 ## Latest change ##
 
-* 20.03 (2020-08-23)
-  - Included Jul-2020 CPU.
-  - MOAT369 updated to v20.02.
+* 20.04 (2021-02-10)
+  - Included Jan-2021 CPU.
 
 Check **[CHANGELOG.md](https://github.com/dbarj/orachksum/blob/master/CHANGELOG.md)** for more info.
